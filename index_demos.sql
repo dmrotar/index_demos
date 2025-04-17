@@ -14,7 +14,7 @@ CREATE TABLE people (
 
 
 explain analyze
-select * from people where id = 2500000;
+select * from people where id = 2500;
 
 
 
