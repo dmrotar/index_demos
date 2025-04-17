@@ -10,7 +10,7 @@ CREATE TABLE people (
   visited_countries text[] NOT NULL
 );
 
--- PGPASSWORD=postgres psql -h localhost -p 10100 -d index_demos -U postgres --command "\COPY people FROM '/Users/dan/code/fireball/services/main_large.csv' WITH (format csv)"
+-- PGPASSWORD=postgres psql -h localhost -p 10100 -d index_demos -U postgres --command "\COPY people FROM '/Users/danielmrotar/Documents/projects/index_demos/main_large.csv' WITH (format csv)"
 
 
 
@@ -20,7 +20,7 @@ select * from people where id = 2500;
 
 
 explain analyze
-select * from people where phone = '3-223-566-2967';
+select * from people where phone = '9-868-725-1128';
 
 create index idx_people_phone on people (phone);
 drop index idx_people_phone;
@@ -28,7 +28,7 @@ drop index idx_people_phone;
 
 
 explain analyze
-select * from people where first_name = 'Andrea' and last_name = 'Carroll' and age = 73;
+select * from people where first_name = 'Clarence' and last_name = 'Griffin' and age = 41;
 
 create index idx_people_last_name on people (last_name);
 drop index idx_people_last_name;
@@ -59,16 +59,16 @@ drop index idx_people_phone_first_name;
 
 
 explain analyze
-select * from people where age = 25 and favorite_color = 'Blue' limit 100;
+select * from people where age = 25 and favorite_color = 'Indigo' limit 500;
 
 explain analyze
-select * from people where age < 25 and favorite_color = 'Blue' limit 100;
-
-create index idx_people_age_favorite_color on people (age, favorite_color);
-drop index idx_people_age_favorite_color;
+select * from people where age < 25 and favorite_color = 'Indigo' limit 500;
 
 create index idx_people_favorite_color_age on people (favorite_color, age);
 drop index idx_people_favorite_color_age;
+
+create index idx_people_age_favorite_color on people (age, favorite_color);
+drop index idx_people_age_favorite_color;
 
 
 
