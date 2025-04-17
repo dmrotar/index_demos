@@ -5,6 +5,7 @@ CREATE TABLE people (
   first_name text NOT NULL,
   phone text NOT NULL,
   age integer NOT NULL,
+  decade integer NOT NULL,
   favorite_color text NOT NULL,
   visited_countries text[] NOT NULL
 );
@@ -19,7 +20,7 @@ select * from people where id = 2500;
 
 
 explain analyze
-select * from people where phone = '1-872-570-8470';
+select * from people where phone = '3-223-566-2967';
 
 create index idx_people_phone on people (phone);
 drop index idx_people_phone;
@@ -27,7 +28,7 @@ drop index idx_people_phone;
 
 
 explain analyze
-select * from people where first_name = 'Benjamin' and last_name = 'Ferguson' and age = 46;
+select * from people where first_name = 'Andrea' and last_name = 'Carroll' and age = 73;
 
 create index idx_people_last_name on people (last_name);
 drop index idx_people_last_name;
@@ -95,4 +96,19 @@ create index idx_people_right_last_name_right_phone on people (right(last_name, 
 drop index idx_people_right_last_name_right_phone;
 
 
+
+explain analyze
+select * from people where decade = 1980 and age = 40 and right(last_name,1) = 'z' limit 1000;
+
+create index idx_people_decade on people (decade);
+drop index idx_people_decade;
+
+create index idx_people_age on people (age);
+drop index idx_people_age;
+
+create index idx_people_decade_age on people (decade, age);
+drop index idx_people_decade_age;
+
+create statistics stats_decade_age (ndistinct, dependencies) on decade, age from people;
+drop statistics stats_decade_age;
 
