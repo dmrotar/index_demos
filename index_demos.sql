@@ -35,11 +35,11 @@ drop index idx_people_last_name;
 create index idx_people_first_name on people (first_name);
 drop index idx_people_first_name;
 
-create index idx_people_first_name_last_name on people (first_name, last_name);
-drop index idx_people_first_name_last_name;
+create index idx_people_last_name_and_first_name on people (last_name, first_name);
+drop index idx_people_last_name_and_first_name;
 
-create index idx_people_first_name_last_name_age on people (first_name, last_name, age);
-drop index idx_people_first_name_last_name_age;
+create index idx_people_last_name_first_name_age on people (last_name, first_name, age);
+drop index idx_people_last_name_first_name_age;
 
 
 
