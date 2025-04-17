@@ -19,7 +19,7 @@ select * from people where id = 2500;
 
 
 explain analyze
-select * from people where phone = '2-518-644-5719';
+select * from people where phone = '1-872-570-8470';
 
 create index idx_people_phone on people (phone);
 drop index idx_people_phone;
@@ -27,7 +27,7 @@ drop index idx_people_phone;
 
 
 explain analyze
-select * from people where first_name = 'Annie' and last_name = 'Stevens' and age = 59;
+select * from people where first_name = 'Benjamin' and last_name = 'Ferguson' and age = 46;
 
 create index idx_people_last_name on people (last_name);
 drop index idx_people_last_name;
@@ -35,8 +35,8 @@ drop index idx_people_last_name;
 create index idx_people_first_name on people (first_name);
 drop index idx_people_first_name;
 
-create index idx_people_last_name_and_first_name on people (last_name, first_name);
-drop index idx_people_last_name_and_first_name;
+create index idx_people_last_name_first_name on people (last_name, first_name);
+drop index idx_people_last_name_first_name;
 
 create index idx_people_last_name_first_name_age on people (last_name, first_name, age);
 drop index idx_people_last_name_first_name_age;
@@ -93,5 +93,6 @@ drop index idx_people_last_name;
 
 create index idx_people_right_last_name_right_phone on people (right(last_name, 1), right(phone, 8));
 drop index idx_people_right_last_name_right_phone;
+
 
 
