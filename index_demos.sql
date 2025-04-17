@@ -110,6 +110,7 @@ create index idx_people_decade_age on people (decade, age);
 drop index idx_people_decade_age;
 
 create statistics stats_decade_age (ndistinct, dependencies) on decade, age from people;
+analyze people;
 drop statistics stats_decade_age;
 
 create index idx_people_age on people (age) where age >= 40 and age <= 49;
